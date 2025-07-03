@@ -23,10 +23,8 @@ This diagram shows the communication model in the project:
 - **`led_panel.py`**: Defines the `LedPanel` class which acts as a service server for `/set_led` and publishes the LED states on the `/led_panel_state` topic.
 
 ### Custom Interfaces
-
-- [HardwareStatus.msg](src/my_robot_interfaces/msg/HardwareStatus.msg)
-- [LedStateArray.msg](src/my_robot_interfaces/msg/LedStateArray.msg)
-- [SetLed.srv](src/my_robot_interfaces/srv/SetLed.srv)
+LedStateArray.msg
+SetLed.srv
 
 ---
 

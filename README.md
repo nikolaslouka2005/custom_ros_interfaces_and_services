@@ -4,7 +4,7 @@ This project demonstrates a ROS 2 Python package with custom message and service
 
 ## Architecture Diagram
 
-![image](https://github.com/user-attachments/assets/0251ca50-92a4-4cf3-bba5-d9a100b09cd5)
+![image](https://github.com/user-attachments/assets/831f51d7-60d1-48bd-90c2-a9bf335671f6)
 
 
 This diagram shows the communication model in the project:
@@ -18,13 +18,15 @@ This diagram shows the communication model in the project:
 ## Package: `my_py_pkg`
 
 ### Nodes:
-- **`battery.py`**: Publishes battery status to `/battery_status` using the custom `HardwareStatus.msg`
-- **`led_panel.py`**: Provides a service `/set_led` using the custom `SetLed.srv`
+
+- **`battery.py`**: Defines the `BatteryNode` class which publishes battery status and acts as a client calling the `/set_led` service.
+- **`led_panel.py`**: Defines the `LedPanel` class which acts as a service server for `/set_led` and publishes the LED states on the `/led_panel_state` topic.
 
 ### Custom Interfaces
 
-- `LedStateArray.msg`
-- `SetLed.srv`
+- [HardwareStatus.msg](src/my_robot_interfaces/msg/HardwareStatus.msg)
+- [LedStateArray.msg](src/my_robot_interfaces/msg/LedStateArray.msg)
+- [SetLed.srv](src/my_robot_interfaces/srv/SetLed.srv)
 
 ---
 
@@ -34,8 +36,25 @@ This diagram shows the communication model in the project:
 # Clone repo into your workspace src folder
 cd ~/ros2_custom_ws/src
 git clone git@github.com:nikolaslouka2005/custom_ros_interfaces_and_services.git
-
+```
+```bash
 # Build the workspace
 cd ~/ros2_custom_ws
 colcon build
 source install/setup.bash
+```
+```bash
+#Run the battery node (publisher + client)
+ros2 run my_py_pkg battery
+```
+```bash
+# Run the LED panel node (service server + publisher)
+ros2 run my_py_pkg led_panel
+```
+```bash
+#Call the service to set LED state
+ros2 service call /set_led my_py_pkg/srv/SetLed "{led_number: 1, state: true}"
+```
+
+
+

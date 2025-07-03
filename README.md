@@ -23,8 +23,10 @@ This diagram shows the communication model in the project:
 - **`led_panel.py`**: Defines the `LedPanel` class which acts as a service server for `/set_led` and publishes the LED states on the `/led_panel_state` topic.
 
 ### Custom Interfaces
--LedStateArray.msg.
--SetLed.srv.
+-LedStateArray.msg
+---
+
+-SetLed.srv
 
 ---
 
